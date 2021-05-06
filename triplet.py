@@ -40,7 +40,7 @@ from keras.layers import Input
 from keras.layers import concatenate
 import matplotlib.pyplot as plt
 #plot confusion matrix
-from mlxtend.plotting import plot_confusion_matrix
+#from mlxtend.plotting import plot_confusion_matrix
 from tensorflow.keras.losses import BinaryCrossentropy, CategoricalCrossentropy #as binary_crossentropy
 
 from tensorflow.keras import layers
