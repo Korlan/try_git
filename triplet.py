@@ -687,7 +687,7 @@ def run_test():
         #######################################################################################
         #split to train/validation
         #print('------------------------------------------------------------------------')
-        print(f"Training for fold {fold_no} ...")
+        #print(f"Training for fold {fold_no} ...")
         
         split = train_test_split(train_image, train_caption, final_labels, test_size=0.2, random_state=42)
         (trainX, validX, trainCaption, validCaption, trainFinal, validFinal) = split
