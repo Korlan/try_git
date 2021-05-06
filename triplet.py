@@ -593,10 +593,7 @@ def run_test():
     #count_vect = CountVectorizer(ngram_range=(1, 2), min_df=2, max_df=0.50, preprocessor=my_cool_preprocessor)
     count_vect.fit(all_caption)
     
-
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-sess = tf.Session(config=config)    X_train_counts = count_vect.transform(all_caption)    
+    X_train_counts = count_vect.transform(all_caption)    
     print(X_train_counts.shape)
     
     from sklearn.feature_extraction.text import TfidfTransformer
