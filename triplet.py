@@ -58,6 +58,9 @@ from sklearn.metrics import f1_score
 import random
 #from pca_plotter import PCAPlotter
 
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)
 def get_images_and_labels(path_to_train):
     #print(os.path.basename(path))
     df = pd.DataFrame()
@@ -474,7 +477,10 @@ def triplet_loss(inputs, dist='sqeuclidean', margin='maxplus'):
         negative_distance = K.sum(negative_distance, axis=-1, keepdims=True)
     loss = positive_distance - negative_distance
     if margin == 'maxplus':
-        loss = K.maximum(0.0, alpha + loss)
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)        loss = K.maximum(0.0, alpha + loss)
     elif margin == 'softplus':
         loss = K.log(1 + K.exp(loss))
     return K.mean(loss)
@@ -591,7 +597,10 @@ def run_test():
     #count_vect = CountVectorizer(ngram_range=(1, 2), min_df=2, max_df=0.50, preprocessor=my_cool_preprocessor)
     count_vect.fit(all_caption)
     
-    X_train_counts = count_vect.transform(all_caption)    
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)    X_train_counts = count_vect.transform(all_caption)    
     print(X_train_counts.shape)
     
     from sklearn.feature_extraction.text import TfidfTransformer
@@ -685,7 +694,7 @@ def run_test():
         #######################################################################################
         #split to train/validation
         #print('------------------------------------------------------------------------')
-        print(f'Training for fold {fold_no} ...')
+        print(f"Training for fold {fold_no} ...")
         
         split = train_test_split(train_image, train_caption, final_labels, test_size=0.2, random_state=42)
         (trainX, validX, trainCaption, validCaption, trainFinal, validFinal) = split
@@ -693,7 +702,8 @@ def run_test():
         #######################################################################################
         #define the model
         #print(train_image.shape)
-        #print(train_image.shape[0])
+        #print(train_image.shape[0])import tensorflow as tf
+
         #trainX = np.reshape(trainX, (trainX.shape[0], trainX.shape[1]*trainX.shape[2]*trainX.shape[3]))
         #validX = np.reshape(validX, (validX.shape[0], validX.shape[1]*validX.shape[2]*validX.shape[3]))
        
