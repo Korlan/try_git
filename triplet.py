@@ -57,7 +57,6 @@ from sklearn.metrics import f1_score
 
 import random
 #from pca_plotter import PCAPlotter
-
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
 sess = tf.Session(config=config)
@@ -477,10 +476,7 @@ def triplet_loss(inputs, dist='sqeuclidean', margin='maxplus'):
         negative_distance = K.sum(negative_distance, axis=-1, keepdims=True)
     loss = positive_distance - negative_distance
     if margin == 'maxplus':
-
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-sess = tf.Session(config=config)        loss = K.maximum(0.0, alpha + loss)
+        loss = K.maximum(0.0, alpha + loss)
     elif margin == 'softplus':
         loss = K.log(1 + K.exp(loss))
     return K.mean(loss)
