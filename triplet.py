@@ -628,7 +628,7 @@ def run_test():
         #print(train)
         print('------------------------------------------------------------------------')
         #print('------------------------------------------------------------------------')
-        print(f'Fold {fold_no}!')
+        print(f"Fold {fold_no}!")
         print('train -  {}   |   test -  {}'.format(np.bincount(y_new[train]), np.bincount(y_new[test])))
         binary_df = merged.iloc[train]
         test_binary_df = merged.iloc[test]
